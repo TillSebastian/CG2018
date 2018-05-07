@@ -33,6 +33,34 @@ $
 
 Alle Vektoren mit Null an der vierten Stelle können nicht auf den $R^3$ abgebildet werden und definieren die uneigentliche Hyperebene.
 \section*{Zweite Übung}
-Noch eine Lösung \ldots
+Nach der Vorlesung:\newline
+$ p'=(vl^t-l^tvI)*p ; v=(0,-y_0,1)$
+\newline Bildebene: x-Achse $g:y=0$\newline
+$\Longrightarrow l= [0 1 0]^t$\newline
+$\Longrightarrow vl^t=\begin{bmatrix}
+	0 & 0 & 0\\
+	 0 & -y_0 & 0 \\
+	 0 & 1 & 0 
+\end{bmatrix}$
+\newline und $ l^t vI=(\begin{pmatrix}
+   0 & 1 & 0 \end{pmatrix}*\begin{pmatrix}
+   0 & -y_0 & 1 \end{pmatrix} =-y_0*I$\newline
+   $\Longrightarrow (vl^t-l^tvI)*p= \begin{bmatrix}
+   0 & 0 & 0 \\
+   0 & -y_0 & 0 \\
+   0 & 1 & 0 \end{bmatrix}-y_0\begin{bmatrix}
+   1 & 0 & 0 \\
+   0 & 1 & 0 \\
+   0 & 0 & 1
+   \end{bmatrix})*p
+   $ \newline$=\underbrace{\begin{bmatrix}
+   -y_0 & 0 & 0 \\
+   0 & -2y_0 & 0 \\
+   0 & 1 & -y_0 \end{bmatrix}}*\begin{pmatrix}
+   x\\
+   y\\
+   1\end{pmatrix}$\newline
+   Perspektivische Transformation
+
 
 \end{document}
