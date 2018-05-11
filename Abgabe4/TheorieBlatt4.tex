@@ -1,0 +1,50 @@
+% header
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{amssymb}
+\usepackage{ngerman}
+\usepackage{mathtools}
+\selectlanguage{german} 
+\usepackage[german,onelanguage]{algorithm2e} %for psuedo code
+% the document
+\begin{document}
+
+% Ersetzt in den eckigen Klammern bitte die Übungsnummer.
+\title{Abgabe - Übungsblatt [$4$]\\
+\small{Einführung in die Computergraphik und Visualisierung}}
+\author{ [Till Sebastian] \and [Felix Grefe] \and [Marius Rometsch]}
+\date{\today}
+\maketitle
+
+\section{Clipping-Algorithmen}
+\subsection{n-dimensionaler Liang-Barsky-Algorithmus}
+\begin{itemize}
+\item Im n-dimensionalen Raum werden Halbräume durch (n-1)-dimensionale Objekte definiert
+\item n-
+\item dd
+\end{itemize}
+
+
+\subsection{Sutherland-Hodgman-Algorithmus}
+\begin{algorithm}[H]
+ \KwData{$[P_1:P_n]$, Viewport v}
+ \KwResult{In Viewport geclipptes Polygon aus der Punktliste $[P_1:P_n]$ }
+ \caption{Sutherland-Hodgman-Algorithmus}
+ Lise pErg\;
+ \For{Jeden Eckpunkt E des Viewports v: index i}{
+ 	\For{Jeden Polygon-Eckpnkt P: index j}{
+ 		
+ 	   \uIf{$\overrightarrow{P_j P_{(j+1)mod n}}$ auf der sichtbaren Seite von $\overrightarrow{E_i E_{(i+1)mod4}}$}{
+			$P_{(j+1)mod n}$ zu pErg hinzufügen\;
+		}
+		%\uElseIf{$\overrightarrow{P_j}}$ auf der sichtbaren Seite von $\overrightarrow{E_i E_{(i+1)mod4}}$ und $\overrightarrow{P_{(j+1)mod n}$ nicht}{
+		%	go back to the beginning of current section\;
+		%}
+		\Else{}
+	} 
+ }
+\end{algorithm}
+
+\end{document}
