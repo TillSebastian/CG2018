@@ -22,29 +22,43 @@
 \subsection{n-dimensionaler Liang-Barsky-Algorithmus}
 \begin{itemize}
 \item Im n-dimensionalen Raum werden Halbräume durch (n-1)-dimensionale Objekte definiert
-\item n-
-\item dd
+\item %TODO
+\item %TODO
 \end{itemize}
 
 
 \subsection{Sutherland-Hodgman-Algorithmus}
 \begin{algorithm}[H]
- \KwData{$[P_1:P_n]$, Viewport v}
- \KwResult{In Viewport geclipptes Polygon aus der Punktliste $[P_1:P_n]$ }
+ \KwData{Liste p $[P_1:P_n]$, Viewport v}
+ \KwResult{In Viewport geclipptes Polygon aus der Punktliste pErg  }
  \caption{Sutherland-Hodgman-Algorithmus}
- Lise pErg\;
+ Liste pErg\;
  \For{Jeden Eckpunkt E des Viewports v: index i}{
  	\For{Jeden Polygon-Eckpnkt P: index j}{
  		
  	   \uIf{$\overrightarrow{P_j P_{(j+1)mod n}}$ auf der sichtbaren Seite von $\overrightarrow{E_i E_{(i+1)mod4}}$}{
 			$P_{(j+1)mod n}$ zu pErg hinzufügen\;
 		}
-		%\uElseIf{$\overrightarrow{P_j}}$ auf der sichtbaren Seite von $\overrightarrow{E_i E_{(i+1)mod4}}$ und $\overrightarrow{P_{(j+1)mod n}$ nicht}{
-		%	go back to the beginning of current section\;
-		%}
-		\Else{}
+		\uElseIf{$\overrightarrow{P_j}$ auf der sichtbaren Seite von $\overrightarrow{E_i E_{(i+1)mod4}}$ und $\overrightarrow{P_{(j+1)mod n}}$ nicht}{
+			Schnittpunkt I von $\overrightarrow{P_j P_{(j+1)mod n}}$ mit $\overrightarrow{E_i E_{(i+1)mod4}}$ zu pErg hinzufügen\;
+		}
+		\uElseIf{$\overrightarrow{P_j P_{(j+1)mod n}}$ auf der nicht sichtbaren Seite von $\overrightarrow{E_i E_{(i+1)mod4}}$}{
+			Schnittpunkt I von $\overrightarrow{P_j P_{(j+1)mod n}}$ mit $\overrightarrow{E_i E_{(i+1)mod4}}$ zu pErg hinzufügen\;
+		}
+		\Else{Schnittpunkt I von $\overrightarrow{P_j P_{(j+1)mod n}}$ mit $\overrightarrow{E_i E_{(i+1)mod4}}$ und $\overrightarrow{P_{(j+1)mod n}}$ zu pErg hinzufügen\;}
 	} 
  }
 \end{algorithm}
+
+
+\section{Baryzentrische Koordinaten und Farbinterpolation}
+
+\subsection{Baryzentrische Koordinaten}
+
+%TODO
+
+\subsection{Farbinterpolation}
+
+%TODO
 
 \end{document}
