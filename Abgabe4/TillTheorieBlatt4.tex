@@ -1,0 +1,133 @@
+% header
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{amssymb}
+\usepackage{ngerman}
+\usepackage{mathtools}
+\selectlanguage{german} 
+\usepackage[german,onelanguage]{algorithm2e} %for psuedo code
+% the document
+\begin{document}
+
+% Ersetzt in den eckigen Klammern bitte die Übungsnummer.
+\title{Abgabe - Übungsblatt [$4$]\\
+\small{Einführung in die Computergraphik und Visualisierung}}
+\author{ [Till Sebastian] \and [Felix Grefe] \and [Marius Rometsch]}
+\date{\today}
+\maketitle
+
+\section{Clipping-Algorithmen}
+\subsection{n-dimensionaler Liang-Barsky-Algorithmus}
+\begin{itemize}
+\item Im n-dimensionalen Raum werden Halbräume durch (n-1)-dimensionale Objekte definiert
+\item %TODO
+\item %TODO
+\end{itemize}
+
+
+\subsection{Sutherland-Hodgman-Algorithmus}
+\begin{algorithm}[H]
+ \KwData{Liste p $[P_1:P_n]$, Viewport v}
+ \KwResult{In Viewport geclipptes Polygon aus der Punktliste pErg  }
+ \caption{Sutherland-Hodgman-Algorithmus}
+ Liste pErg\;
+ \For{Jeden Eckpunkt E des Viewports v: index i}{
+ 	\For{Jeden Polygon-Eckpnkt P: index j}{
+ 		
+ 	   \uIf{$\overrightarrow{P_j P_{(j+1)mod n}}$ auf der sichtbaren Seite von $\overrightarrow{E_i E_{(i+1)mod4}}$}{
+			$P_{(j+1)mod n}$ zu pErg hinzufügen\;
+		}
+		\uElseIf{$\overrightarrow{P_j}$ auf der sichtbaren Seite von $\overrightarrow{E_i E_{(i+1)mod4}}$ und $\overrightarrow{P_{(j+1)mod n}}$ nicht}{
+			Schnittpunkt I von $\overrightarrow{P_j P_{(j+1)mod n}}$ mit $\overrightarrow{E_i E_{(i+1)mod4}}$ zu pErg hinzufügen\;
+		}
+		\uElseIf{$\overrightarrow{P_j P_{(j+1)mod n}}$ auf der nicht sichtbaren Seite von $\overrightarrow{E_i E_{(i+1)mod4}}$}{
+			Schnittpunkt I von $\overrightarrow{P_j P_{(j+1)mod n}}$ mit $\overrightarrow{E_i E_{(i+1)mod4}}$ zu pErg hinzufügen\;
+		}
+		\Else{Schnittpunkt I von $\overrightarrow{P_j P_{(j+1)mod n}}$ mit $\overrightarrow{E_i E_{(i+1)mod4}}$ und $\overrightarrow{P_{(j+1)mod n}}$ zu pErg hinzufügen\;}
+	} 
+ }
+\end{algorithm}
+
+
+\section{Baryzentrische Koordinaten und Farbinterpolation}
+
+\subsection{Baryzentrische Koordinaten}
+
+$
+v_1 =\begin{pmatrix}
+1 \\
+0 \\
+0 
+\end{pmatrix}
+$$
+v_2 =\begin{pmatrix}
+0 \\
+1 \\
+0 
+\end{pmatrix}
+$$
+v_3 =\begin{pmatrix}
+	0 \\
+	0 \\
+	1 
+\end{pmatrix}
+$\\
+$
+Q =\begin{pmatrix}
+2/3 \\
+1/3 \\
+0 
+\end{pmatrix}
+$
+ist der Schnittpunkt der Geraden von $v_3$ nach x und $v_1$ nach $v_2$.
+\\Dann gilt noch $0,1^2+0,6^2$=0,26 (Die Strecke von$v_3$ nach x)
+\\und $0,4^2+(2/30)^2$=0,16444444...(Die Strecke von x nach Q)
+\begin{itemize}
+ \item  0,26+0,1644...=0,42444...
+ \item  0,42444.../0,16444...=0,3874346
+\end{itemize}
+$\implies$
+$
+x =\begin{pmatrix}
+0,40837697 \\
+0,2041885 \\
+0,3874346 
+\end{pmatrix}
+$
+
+
+
+\subsection{Farbinterpolation}
+
+Es gilt $x_1*c(v_1)*x_2*c(v_2)+x_3*c(v_3)$$
+\\f_1 =\begin{pmatrix}
+0 \\
+0,2041885... \\
+0
+\end{pmatrix}
+$ $
+f_2 =\begin{pmatrix}
+0 \\
+0,2041885 \\
+ 0,1020942
+\end{pmatrix}
+$ 
+$
+f_3 =\begin{pmatrix}
+0,3874346  \\
+0,19371728 \\
+0
+\end{pmatrix}
+$
+\\
+$
+farbe =\begin{pmatrix}
+0,3874346  \\
+0,79581152\\
+ 0,1020942
+\end{pmatrix}
+$ 
+
+\end{document}
