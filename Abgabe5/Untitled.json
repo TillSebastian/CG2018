@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "title": "Untitled",
+  "description": "",
+  "programs": [
+    {
+      "version": 1,
+      "name": "Default",
+      "vertex": "#version 100\n\nattribute vec3 v_Position;\n\nuniform mat4 modelViewProjection;\n\nuniform struct {\n    int step;\n    float near;\n    float far;\n    float aspect;\n    float fov;\n\n} trans;\n\nvoid main() {\n    gl_Position = modelViewProjection * vec4(v_Position, 1);\n}",
+      "fragment": "#version 100\n\nprecision mediump float;\n\nvoid main() {\n    gl_FragColor = vec4(0.5, 0.5, 0.5, 1);\n}",
+      "isDefault": true
+    }
+  ],
+  "javascript": "function ui(c) {\n    var ui = c.ui;\n\n    // add left hand side grid\n    ui.add(ui.grid({\n        children: [\n            // theta slider in range [0, pi]\n            ui.label({ value: 'Steps:', title: 'Steps' }),\n            ui.slider({\n                bind: [this.trans, 'step'],\n                min: 0,\n                max: 4\n            }),\n            // phi slider in range [0, 2pi]\n            ui.label({ value: 'fov:', title: 'fov' }),\n            ui.slider({\n                bind: [this.trans, 'fov'],\n                min: 0.0,\n                max: 2.0 * Math.PI\n            })\n        ]\n    }), { left: 10, bottom: 6 });\n\n    // add right hand side grid\n    ui.add(ui.grid({\n        children: [\n            // line thickness slider in range [0, 0.1]\n            ui.label({ value: 'far:', title: 'Outer Contour Thickness' }),\n            ui.slider({\n                bind: [this.trans, 'far'],\n                min: 0.1,\n                max: 10.0\n            }),\n            // discretization steps slider in range [2, 10]\n            // this yields a float so we have to floor it in order to yield an integer later\n            ui.label({ value: 'aspect:', title: 'Number of discretization steps' }),\n            ui.slider({\n                bind: [this.trans, 'aspect'],\n                min: 0.1,\n                max: 10.0\n            })\n        ]\n    }), { right: 10, bottom: 6 });\n}\n\nfunction init(c) {\n    this.box = new c.models.Box(c, 1, 1, 1);\n    this.view = c.models.View.perspective(c, 45, null, 0.01, 50);\n\n    this.view.transform\n        .rotateY(-Math.PI / 6)\n        .rotateX(-Math.PI / 6)\n        .translateForward(3);\n    this.trans = { step: 4, near: 1, far: 3, aspect:1.5, fov: Math.PI/4 }\n    ui.call(this, c);\n}\n\nfunction render(c) {\n    c.view(this.view);\n    this.box.render(c);\n}",
+  "creationTime": "2018-05-27T12:52:54.907Z",
+  "authors": []
+}
