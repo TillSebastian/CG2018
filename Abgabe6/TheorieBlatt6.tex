@@ -1,0 +1,86 @@
+% header
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{amssymb}
+\usepackage{ngerman}
+\usepackage{mathtools}
+\selectlanguage{german} 
+\usepackage[german,onelanguage]{algorithm2e} %for psuedo code
+% the document
+\begin{document}
+
+% Ersetzt in den eckigen Klammern bitte die Übungsnummer.
+\title{Abgabe - Übungsblatt [$6$]\\
+\small{Einführung in die Computergraphik und Visualisierung}}
+\author{ [Till Sebastian] \and [Felix Grefe] \and [Marius Rometsch]}
+\date{\today}
+\maketitle
+
+
+
+\section{Texturen}
+\subsection{Bayrenzentrische Koordinaten}
+
+$
+A =\begin{pmatrix}
+1 \\
+5 \\
+
+\end{pmatrix}
+$$
+B =\begin{pmatrix}
+1 \\
+1 \\
+
+\end{pmatrix}
+$$
+C =\begin{pmatrix}
+	3 \\
+	1\\
+	 
+\end{pmatrix}
+$\\
+Es muss gelten:
+
+\begin{itemize}
+ \item  x = $\alpha$ * A + $\beta$ * B + $\gamma$ * C
+ \item  1 = $\alpha$ + $\beta$ + $\gamma$
+\end{itemize}
+Aus diesen Bedingungen ergibt sich ein LGS mit den baryzentrischen Koordinaten von x als Loesungen:
+\\
+$\implies$
+$
+x =\begin{pmatrix}
+0,5 \\
+0,25 \\
+0,25 
+\end{pmatrix}
+$
+Es gilt $x_1*c(A)+x_2*c(B)+x_3*c(C) = UV$$
+\\f_1 =\begin{pmatrix}
+0 \\
+0,25 
+\end{pmatrix}
+$ $
+f_2 =\begin{pmatrix}
+0,05 \\
+0,2 
+\end{pmatrix}
+$ 
+$
+f_3 =\begin{pmatrix}
+0,15  \\
+0,175
+\end{pmatrix}
+$
+\\
+$
+UV =\begin{pmatrix}
+0,2 \\
+0,625
+\end{pmatrix}
+$ 
+
+\end{document}
