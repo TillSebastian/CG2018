@@ -82,5 +82,39 @@ UV =\begin{pmatrix}
 0,625
 \end{pmatrix}
 $ 
+\subsection{nearest neighbor}
 
+C\textsubscript{tex}(0.2,0.625)=C{(0,2*1+1/2)mod 1,{(0,625+0,5) mod 1}}=C(0,1)
+\\Der Punkt ist grau
+\subsection{Bilineare Interpolation}
+$\hat{u}=0,2-0    
+\\\hat{v}=0,625-0
+\\\implies
+\\C_j(u,v)=0,2*C[0+1,0+j]+0,8*C[0,0+j]
+\\\implies
+\\C_0(u,v)=0,2*C[1,0]+0,8*C[0,0]=C \begin{pmatrix}
+0,2 \\
+0
+\end{pmatrix}
+\\C_1(u,v)=0,2*C[1,1]+0,8*C[0,1]=C\begin{pmatrix}
+0,2 \\
+1
+\end{pmatrix}
+\\\implies
+\\C\textsubscript{tex}(u,v)=0,625*C_1(u,v)+0,375*C_0(u,v)
+\\\implies
+\\C\textsubscript{tex}(u,v)=0,625*C\begin{pmatrix}
+0,2 \\
+1
+\end{pmatrix}+0,375*C\begin{pmatrix}
+0,2 \\
+0
+\end{pmatrix}
+\\\implies
+\\C\textsubscript{tex}(u,v)=0,625*C\begin{pmatrix}
+0,2 \\
+0,625
+\end{pmatrix}
+$
+\\Die Farbe ist also auch grau
 \end{document}
