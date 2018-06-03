@@ -12,12 +12,43 @@
 \begin{document}
 
 % Ersetzt in den eckigen Klammern bitte die Übungsnummer.
-\title{Abgabe - Übungsblatt [$6$]\\
+\title{Abgabe - Übungsblatt [$4$]\\
 \small{Einführung in die Computergraphik und Visualisierung}}
 \author{ [Till Sebastian] \and [Felix Grefe] \and [Marius Rometsch]}
 \date{\today}
 \maketitle
 
+\section{Clipping-Algorithmen}
+\subsection{n-dimensionaler Liang-Barsky-Algorithmus}
+\begin{itemize}
+\item Im n-dimensionalen Raum werden Halbräume durch (n-1)-dimensionale Objekte definiert
+\end{itemize}
+
+
+\subsection{Sutherland-Hodgman-Algorithmus}
+\begin{algorithm}[H]
+ \KwData{Liste p $[P_1:P_n]$, Viewport v}
+ \KwResult{In Viewport geclipptes Polygon aus der Punktliste pErg  }
+ \caption{Sutherland-Hodgman-Algorithmus}
+ Liste pErg\;
+ \For{Jeden Eckpunkt E des Viewports v: index i}{
+ 	\For{Jeden Polygon-Eckpnkt P: index j}{
+ 		
+ 	   \uIf{$\overrightarrow{P_j P_{(j+1)mod n}}$ auf der sichtbaren Seite von $\overrightarrow{E_i E_{(i+1)mod4}}$}{
+			$P_{(j+1)mod n}$ zu pErg hinzufügen\;
+		}
+		\uElseIf{$\overrightarrow{P_j}$ auf der sichtbaren Seite von $\overrightarrow{E_i E_{(i+1)mod4}}$ und $\overrightarrow{P_{(j+1)mod n}}$ nicht}{
+			Schnittpunkt I von $\overrightarrow{P_j P_{(j+1)mod n}}$ mit $\overrightarrow{E_i E_{(i+1)mod4}}$ zu pErg hinzufügen\;
+		}
+		\uElseIf{$\overrightarrow{P_j P_{(j+1)mod n}}$ auf der nicht sichtbaren Seite von $\overrightarrow{E_i E_{(i+1)mod4}}$}{
+			Schnittpunkt I von $\overrightarrow{P_j P_{(j+1)mod n}}$ mit $\overrightarrow{E_i E_{(i+1)mod4}}$ zu pErg hinzufügen\;
+		}
+		\Else{Schnittpunkt I von $\overrightarrow{P_j P_{(j+1)mod n}}$ mit $\overrightarrow{E_i E_{(i+1)mod4}}$ und $\overrightarrow{P_{(j+1)mod n}}$ zu pErg hinzufügen\;}
+	} 
+	Ersetze p durch pErg\;
+ }
+ Gebe pErg zurück\;
+\end{algorithm}
 
 
 \section{Baryzentrische Koordinaten und Farbinterpolation}
@@ -49,6 +80,7 @@ Es muss gelten:
  \item  x = $\alpha$ * v1 + $\beta$ * v2 + $\gamma$ * v3
  \item  1 = $\alpha$ + $\beta$ + $\gamma$
 \end{itemize}
+
 Aus diesen Bedingungen ergibt sich ein LGS mit den baryzentrischen Koordinaten von x als Loesungen:
 \\
 $\implies$
