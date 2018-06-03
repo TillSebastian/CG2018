@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "title": "Texture Mapping",
+  "description": "Exercise for CG1",
+  "programs": [
+    {
+      "version": 1,
+      "name": "Default",
+      "vertex": "#version 100\n\nattribute vec3 v_Position;\n\nuniform mat4 modelViewProjection;\n\nvarying vec3 pos;\n\nvoid main() {\n    gl_Position = modelViewProjection * vec4(v_Position, 1);\n    pos = normalize(v_Position.xyz);\n}\n",
+      "fragment": "#version 100\n\nprecision mediump float;\n\nconst float eps = 1E-06;\nconst float pi = 3.14159265359;\n\nuniform bool cylindrical;\n\nuniform struct {\n    sampler2D texSampler;\n} material;\n\nvarying vec3 pos;\n\nvec2 getUVCoordinatesCyl(vec3 p) {\n    // TASK:\n    // Implement the determination of suitable UV\n    // coordinates to perform a cylindrical projection\n    // of the texture onto the sphere's surface.\n\n    vec2 uv = vec2(0.0, 0.0);\n    float x=pos.x;\n    float y=pos.y;\n    float z=pos.z;\n    float u,v;\n    u= atan(x,z)/(2.0*pi)+0.5;\n    v= y*0.5+0.5;;\n    uv=vec2(u,v);\n    // ...\n\n    return uv;\n}\n\nvec2 getUVCoordinatesSph(vec3 p) {\n    // TASK:\n    // Implement the determination of suitable UV\n    // coordinates to perform a spherical projection\n    // of the texture onto the sphere's surface.\n\n    vec2 uv = vec2(0.0, 0.0);\n    float x=pos.x;\n    float y=pos.y;\n    float z=pos.z;\n    float u,v;\n   u= 0.5+atan(z,x)/(2.0*pi);\n    v= 0.5-asin(y)/pi;\n    uv=vec2(u,v);\n    // ...\n\n    return uv;\n}\n\nvoid main() {\n    vec2 tc;\n    // Decide whether to use cylindrical or spherical\n    // mapping depending on what is chosen by the user.\n    if (cylindrical) {\n        tc = getUVCoordinatesCyl(normalize(pos));\n    } else {\n        tc = getUVCoordinatesSph(normalize(pos));\n    }\n    gl_FragColor = texture2D(material.texSampler, tc);\n}\n",
+      "isDefault": true
+    }
+  ],
+  "javascript": "function ui(c) {\n    // UI for switching between cylindrical and spherical mapping.\n    var ui = c.ui;\n    ui.add(ui.grid({\n        children: [\n            ui.label({ value: 'Mapping: ', title: 'Texture mapping mode' }),\n            ui.multiswitch({\n                values: [\"Cylinder\", \"Sphere\"],\n                bind: [this, \"mapping\"]\n            }),\n        ]\n    }), { right: 10, bottom: 6 });\n}\n\nfunction getTexture(c) {\n    // Generate a texture with random colors.\n    var data = [];\n\n    for (var i = 0; i < 200; ++i) {\n        data.push(Math.random());\n        data.push(Math.random());\n        data.push(Math.random());\n        data.push(1.0);\n    }\n\n    var tex = new c.models.Texture(c);\n    tex.data(c, 20, 10, new Float32Array(data), {type: c.gl.FLOAT});\n\n    return tex;\n}\n\n// Initialization\nfunction init(c) {\n    c.gl.getExtension('OES_texture_float');\n    c.gl.enable(c.gl.DEPTH_TEST);\n\n    this.sphere = new c.models.IcoSphere(c, 1.0, 4);\n\n    this.view = c.models.View.perspective(c, 45, null, 0.01, 50);\n    this.view.transform\n        .rotateY(-Math.PI / 6)\n        .rotateX(-Math.PI / 6)\n        .translateForward(4);\n    this.view.color = c.math.vec4.fromValues(0.0, 0.0, 0.0, 1.0);\n\n    // Generate texture\n    this.tex = getTexture(c);\n    // Bind textures to texture units\n    c.gl.activeTexture(c.gl.TEXTURE0);\n    c.gl.bindTexture(c.gl.TEXTURE_2D, this.tex.id);\n    // Set texture unit as material property\n    this.sphere.material.uniforms = { 'texSampler': this.tex };\n    this.mapping = \"Cylinder\";\n    ui.call(this, c);\n}\n\n// Render function\nfunction render(c) {\n    c.view(this.view);\n\n    // Sphere rotation\n    this.sphere.transform.rotateY(0.003);\n    // Render scene, providing the info whether to use cylindrical mapping.\n    this.sphere.render(c, {\"uniforms\": {\"cylindrical\": (this.mapping == \"Cylinder\")}});\n}\n",
+  "creationTime": "2015-05-04T16:03:55.035Z",
+  "authors": [
+    {
+      "name": "richard",
+      "license": "CC 0",
+      "year": 2015
+    }
+  ]
+}
