@@ -4,6 +4,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{hyperref}
 \usepackage{amssymb}
+\usepackage{xcolor}
 \usepackage{ngerman}
 \usepackage{mathtools}
 \selectlanguage{german} 
@@ -22,15 +23,34 @@
 
 \section*{Reflexionsmodelle}
 \subsection*{a)}
-Ein BRDF ist eine Funktion die für Oberflächen von Materialien das Reflexionsverhalten berechnet.
-BRDF sind Wahrscheinlichkeitsverteilungen, dass bedeutet sie gibt für einkommende Strahlen an wie wahrscheinlich sie in eine bestimmte Richtung reflektiert werden.
-Man kann bei einem BRDF einfach die Einfall- und Ausfallsrichtung der Strahlen vertauschen, dies ist MÖglich durch die Helmholz-Reziprozität der Gleichung.
-\subsection*{b)}
-Mit BSSRDF kann man auch berechnen wie sich Strahlen verhalten die in das Material eindringen und an einem anderen Punkt wieder austreten.
-\subsection*{c)}
-Das Blinn-Phong-Modell basiert auf dem Phong-Modell ist aber schneller zu berechnen, da man nicht für jede Normale die Reflexionsrichtung neu berechnen muss.
-\subsection*{d)}
-Das Cosine-Lobe-BRDF ist Energie erhaltend im Gegensatz zum Blinn-Phong-Modell.
-\subsection*{e)}
+Die bidirektionale Reflektionsverteilungsfunktion (BRDF), in englisch  \glqq bidirectional reflectance distribution function\grqq, stellt eine Funktion für das Reflexionsverhalten von Oberflächen eines Materials unter beliebigen Einfallswinkeln dar. Sie liefert für jeden auf dem Material auftreffenden Lichtstrahl mit gegebenem Eintrittswinkel den Quotienten aus Strahlungsdichte und Bestrahlungsstärke für jeden austretenden Lichtstrahl. Wichtige Eigneschaften:
+\begin{itemize}
+\item[\textbf{Reziprozität}] $\rho$ ändert sich nicht, wenn Einfalls- und Ausfallswinkel vertauscht werden.Hierauf beruht u.a. das Raytracing.
+\item[\textbf{Anisotrophie}] ($\rho$ ist im allgemeinen anisotrop) Wird bei gleicher Einfalls- und Ausfall-srichtung die Fläche um die Normale verdreht, so ändert sich der Anteil des reflektiertenLichts. Typische Beispiele sind Stoffe oder Metalleffektlacke.
+\end{itemize}
 
+\subsection*{b)}
+BRDF liefert im Vergleich zu BSSRDF eine \glqq harte\grqq Lichtverteilung. Das liegt daran, das BSSRDF nicht nur Ein- und Ausfallwinkel, sowie den Betrachtungswinkel betrachtet, sondern auch in welchem Punkt das Licht eintrifft und mit dem Material interagiert. Bei BRDF werden folgende vereinfachende Annahmen gemacht:
+
+\begin{itemize}
+\item Das reflektierte Licht hat dieselbe Wellenlängen wie das einfallende Licht. Fluoreszenz wird nicht berücksichtigt.
+\item Licht wird direkt reflektiert.  Die Energie wird nicht gespeichert und später wieder abgestrahlt. Phosphoreszenz wird nicht berücksichtigt.
+\item Daher können atmosphärische Effekte oder die Reflexion auf bestimmten Materialien, wie z.B. der Haut oder den Haaren nicht korrekt beschrieben werden.
+\end{itemize}
+\subsection*{c)}
+\begin{itemize}
+\item[\textbf{Phong-Modell}] Der Winkel zwischen reflektiertem Lichtstrahl und dem Augvektor wird als Maß für die Wahrscheinlichkeit verwendet, um zu bestimmen, ob die reflektierte Lichtquelle zu sehen ist.
+\item[\textbf{Phong-Blinn-Modell}] Das Modell kann als Approximation eines Mikrofacettenmodells aufgefasst werden, wobei die Wahrscheinlichkeit, eine Facette mit Normalenvektor $n_{micro} = h$  zu sehen (für diese Normalen wird der Lichtvektor direkt ins Auge reflektiert) proportional zu $(N,H)^2$ ist.
+
+\end{itemize}
+\subsection*{d)}
+Das Cosine-Lobe-Modell bezieht, anderes als das Blinn-Phong-Modell, die Energieerhaltung mit ein. Dadurch wird das Bild mehr fotorealistisch und entspricht mehr einem physikalischen Modell. Zudem ist das Modell reziprok. Es besteht also eine Balancierung zwischen Einfall-und Ausfallwinkels des Lichts.
+\subsection*{e)}
+Die Renderinggleichung beschreibt die Energieerhaltung von sich ausbreitendem Licht. 
+Damit bildet diese Formel die Grundlage zur Beleuchtung einer Szene. Die Formel sieht wie folgt aus: $$L_r(x, w_r) = \color{red} L_e(x, w_r) +\color{blue} \int p(x, w_r, w_i)L_i(x, w_i)cos(\Theta_i)dw_i$$
+Wenn wir uns die Gleichung betrachten, so haben wir einen Teil, hier blau, der der Reflexionsgleichung
+entspicht und einen anderen Teil, hier rot, den Emissionsterm. Er gibt an, wie
+viel Licht von $x$ aus in Richtung $w_r$ ausgestrahlt wird. Das ist für den Fall, dass $x$ selbst eine Lichtquelle ist.\newline
+$p(x, w_r, w_i)$: Der Streuungsterm ist eine BRDF mit Einfallswinkel $w_i$ und Reflexionswinkel $w_r$.\newline
+$L_i(x, w_i)$: Der Term beschreibt, wie viel Licht aus Richtung $w_i$ den Punkt $x$ erreicht.
 \end{document}
