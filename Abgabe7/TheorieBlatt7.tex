@@ -1,0 +1,36 @@
+% header
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{amssymb}
+\usepackage{ngerman}
+\usepackage{mathtools}
+\selectlanguage{german} 
+\usepackage[german,onelanguage]{algorithm2e} %for psuedo code
+% the document
+\begin{document}
+
+% Ersetzt in den eckigen Klammern bitte die Übungsnummer.
+\title{Abgabe - Übungsblatt [$7$]\\
+\small{Einführung in die Computergraphik und Visualisierung}}
+\author{ [Till Sebastian] \and [Felix Grefe] \and [Marius Rometsch]}
+\date{\today}
+\maketitle
+
+
+
+\section*{Reflexionsmodelle}
+\subsection*{a)}
+Ein BRDF ist eine Funktion die für Oberflächen von Materialien das Reflexionsverhalten berechnet.
+BRDF sind Wahrscheinlichkeitsverteilungen, dass bedeutet sie gibt für einkommende Strahlen an wie wahrscheinlich sie in eine bestimmte Richtung reflektiert werden.
+Man kann bei einem BRDF einfach die Einfall- und Ausfallsrichtung der Strahlen vertauschen, dies ist MÖglich durch die Helmholz-Reziprozität der Gleichung.
+\subsection*{b)}
+Mit BSSRDF kann man auch berechnen wie sich Strahlen verhalten die in das Material eindringen und an einem anderen Punkt wieder austreten.
+\subsection*{c)}
+Das Blinn-Phong-Modell basiert auf dem Phong-Modell ist aber schneller zu berechnen, da man nicht für jede Normale die Reflexionsrichtung neu berechnen muss.
+\subsection*{d)}
+Das Cosine-Lobe-BRDF ist Energie erhaltend im Gegensatz zum Blinn-Phong-Modell.
+\subsection*{e)}
+
+\end{document}
