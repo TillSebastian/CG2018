@@ -1,0 +1,38 @@
+% header
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{ngerman}
+\usepackage{mathtools}
+\selectlanguage{german} 
+\usepackage[german,onelanguage]{algorithm2e} %for psuedo code
+% the document
+\begin{document}
+
+% Ersetzt in den eckigen Klammern bitte die Übungsnummer.
+\title{Abgabe - Übungsblatt [$9$]\\
+\small{Einführung in die Computergraphik und Visualisierung}}
+\author{ [Till Sebastian] \and [Felix Grefe] \and [Marius Rometsch]}
+\date{\today}
+\maketitle
+
+
+
+\section*{Teilaufgabe 1}
+\subsection*{a)}
+$p'(t)=(3t^2* $ e\textsuperscript{$t^2$}$+t^3 *2t*$e\textsuperscript{$t^2$}$ ,\frac{2t*\cos (t)+t^2*\sin (t)}{\cos ^2 (t)})^T
+\\=3t^2* $ e\textsuperscript{$t^2$}$+2t^4 *$e\textsuperscript{$t^2$}$ ,\frac{2t*\cos (t)+t^2*\sin (t)}{\cos ^2 (t)})^T
+$
+\\für t=0 gilt nun p'(t)=0 da immer mit 0 multipliziert wird.
+Die Kurve ist also nicht regulär.
+\subsection*{b)}
+
+$p'(t)=(3t^2,2t+5)^T
+\\T(2)=p'(2)=(3*4,4+5)^T=(12,9)^T
+$
+\subsection*{c)}
+Eine Kurve ist Bogenlänge parametrisiert wenn die Tangente die Länge 1 hat.
+\end{document}
