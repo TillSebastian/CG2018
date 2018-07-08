@@ -1,0 +1,40 @@
+% header
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{ngerman}
+\usepackage{mathtools}
+\selectlanguage{german} 
+\usepackage[german,onelanguage]{algorithm2e} %for psuedo code
+% the document
+\begin{document}
+
+% Ersetzt in den eckigen Klammern bitte die Übungsnummer.
+\title{Abgabe - Übungsblatt [$10$]\\
+\small{Einführung in die Computergraphik und Visualisierung}}
+\author{ [Till Sebastian] \and [Felix Grefe] \and [Marius Rometsch]}
+\date{\today}
+\maketitle
+
+
+
+\section*{Aufgabe 1}
+\subsection*{a)}
+$A(x)=U(x)+t
+\\A(\sum_{i=0}^{n}b_i B^n _i(t))
+\\=U(\sum_{i=0}^{n}b_i B^n _i(t))+t
+\\=\sum_{i=0}^{n}(U (b_i B^n _i(t))+B^n _i(t)t)$ Dies folgt aus der Partition von Eins
+$
+\\=\sum_{i=0}^{n}(B^n _i(t)(U (b_i)+B^n _i(t)t))
+\\=\sum_{i=0}^{n}(A(b_i) B^n _i(t))
+$
+
+
+\subsection*{b)}
+
+
+
+\end{document}
