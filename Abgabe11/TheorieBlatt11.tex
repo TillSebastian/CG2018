@@ -1,0 +1,59 @@
+% header
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{ngerman}
+\usepackage{mathtools}
+\selectlanguage{german} 
+\usepackage[german,onelanguage]{algorithm2e} %for psuedo code
+% the document
+\begin{document}
+
+% Ersetzt in den eckigen Klammern bitte die Übungsnummer.
+\title{Abgabe - Übungsblatt [$11$]\\
+\small{Einführung in die Computergraphik und Visualisierung}}
+\author{ [Till Sebastian] \and [Felix Grefe] \and [Marius Rometsch]}
+\date{\today}
+\maketitle
+
+
+
+\section*{Aufgabe 1}
+\subsection*{a)}
+ \[ f(x) =
+\begin{cases}
+xe^{-x}       & \quad \text{, } x\geq 0\\
+0   & \quad \text{,sonst } 
+\end{cases}
+\]
+$
+\hat{f}(\omega)= \int_{-\infty}^{\infty} f(t) e^{-2\pi i \omega t}\;  \mathrm{d} t
+\\=\int_{0}^{\infty} te^{-t} e^{-2\pi i \omega t}\;  \mathrm{d} t
+\\=[\frac{e^{(-1-2i\pi\omega)t}(2i\pi\omega t+t+1)}{(-2\pi\omega+i)^2}]_0^\infty
+\\=\frac{1}{(-2\pi\omega+i)^2}(e^{-\infty-i\infty}(i\infty+\infty+1)-(e^0*1))
+\\=\frac{1}{(-2\pi\omega+i)^2}(0-1)
+\\=\frac{-1}{i^2-4\pi\omega i+4\pi^2\omega^2}
+\\=\frac{-1}{-1-4\pi\omega i+4\pi^2\omega^2}
+\\=\frac{1}{1+4\pi\omega i-4\pi^2\omega^2}
+\\=\frac{1}{(1+2\pi\omega i)^2}
+$
+
+
+
+
+\subsection*{b)}
+$
+f(x)=e^{-a|x|}
+\\\hat{f}(\omega)= \int_{-\infty}^{\infty} f(t) e^{-2\pi i \omega t}\;  \mathrm{d} t
+\\=2\int_{0}^{\infty} e^{-at} e^{-2\pi i \omega t}\;  \mathrm{d} t
+\\=2\int_{0}^{\infty} e^{-at-2\pi i \omega t}\;  \mathrm{d} t
+\\=\frac{2}{a+2i\pi\omega}[-e^{t(-(a+2i\pi\omega))}]_0^\infty
+\\=\frac{2}{a+2i\pi\omega}[-e^{-\infty-i\infty}+e^0]
+\\=\frac{2}{a+2i\pi\omega}
+$
+\subsection*{c)}
+
+\end{document}
